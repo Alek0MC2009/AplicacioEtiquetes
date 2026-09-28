@@ -2,15 +2,8 @@
 {
     partial class FormImpresion
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,16 +29,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 60);
+            this.panel1.Padding = new System.Windows.Forms.Padding(20);
+            this.panel1.Size = new System.Drawing.Size(1200, 110);
             this.panel1.TabIndex = 0;
             // 
             // btnImprimirAhora
             // 
             this.btnImprimirAhora.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnImprimirAhora.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimirAhora.Location = new System.Drawing.Point(0, 0);
+            this.btnImprimirAhora.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.btnImprimirAhora.Location = new System.Drawing.Point(20, 20);
             this.btnImprimirAhora.Name = "btnImprimirAhora";
-            this.btnImprimirAhora.Size = new System.Drawing.Size(800, 60);
+            this.btnImprimirAhora.Size = new System.Drawing.Size(1160, 70);
             this.btnImprimirAhora.TabIndex = 0;
             this.btnImprimirAhora.Text = "🖨 Confirmar e Imprimir";
             this.btnImprimirAhora.UseVisualStyleBackColor = true;
@@ -57,25 +47,26 @@
             // 
             // vistaPrevia
             // 
+            this.vistaPrevia.AutoZoom = true;
             this.vistaPrevia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vistaPrevia.Location = new System.Drawing.Point(0, 60);
+            this.vistaPrevia.Location = new System.Drawing.Point(0, 110);
             this.vistaPrevia.Name = "vistaPrevia";
-            this.vistaPrevia.Size = new System.Drawing.Size(800, 390);
+            this.vistaPrevia.Size = new System.Drawing.Size(1200, 740);
             this.vistaPrevia.TabIndex = 1;
             // 
             // FormImpresion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 850);
             this.Controls.Add(this.vistaPrevia);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(900, 650);
             this.Name = "FormImpresion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormImpresion";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion
