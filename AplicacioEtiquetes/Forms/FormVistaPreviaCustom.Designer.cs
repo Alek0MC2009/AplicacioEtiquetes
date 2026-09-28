@@ -1,5 +1,4 @@
-﻿
-namespace AplicacioEtiquetes.Forms
+﻿namespace AplicacioEtiquetes.Forms
 {
     partial class FormVistaPreviaCustom
     {
@@ -38,6 +37,9 @@ namespace AplicacioEtiquetes.Forms
             // 
             // vistaPrevia
             // 
+            this.vistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.vistaPrevia.Location = new System.Drawing.Point(12, 74);
             this.vistaPrevia.Name = "vistaPrevia";
             this.vistaPrevia.Size = new System.Drawing.Size(776, 364);
@@ -45,6 +47,8 @@ namespace AplicacioEtiquetes.Forms
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.btnCancela);
             this.panel1.Controls.Add(this.btnImprimirAhora);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -54,9 +58,10 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnImprimirAhora
             // 
+            this.btnImprimirAhora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.btnImprimirAhora.Location = new System.Drawing.Point(3, 3);
             this.btnImprimirAhora.Name = "btnImprimirAhora";
-            this.btnImprimirAhora.Size = new System.Drawing.Size(393, 50);
+            this.btnImprimirAhora.Size = new System.Drawing.Size(382, 50);
             this.btnImprimirAhora.TabIndex = 0;
             this.btnImprimirAhora.Text = "🖨 Imprimeix";
             this.btnImprimirAhora.UseVisualStyleBackColor = true;
@@ -64,9 +69,10 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnCancela
             // 
-            this.btnCancela.Location = new System.Drawing.Point(402, 3);
+            this.btnCancela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancela.Location = new System.Drawing.Point(391, 3);
             this.btnCancela.Name = "btnCancela";
-            this.btnCancela.Size = new System.Drawing.Size(371, 50);
+            this.btnCancela.Size = new System.Drawing.Size(382, 50);
             this.btnCancela.TabIndex = 1;
             this.btnCancela.Text = "Cancela";
             this.btnCancela.UseVisualStyleBackColor = true;
@@ -80,6 +86,7 @@ namespace AplicacioEtiquetes.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.vistaPrevia);
             this.Name = "FormVistaPreviaCustom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormVistaPreviaCustom";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

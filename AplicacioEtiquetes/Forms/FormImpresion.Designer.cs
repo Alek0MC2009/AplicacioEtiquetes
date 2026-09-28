@@ -1,5 +1,4 @@
-﻿
-namespace AplicacioEtiquetes.Forms
+﻿namespace AplicacioEtiquetes.Forms
 {
     partial class FormImpresion
     {
@@ -38,7 +37,6 @@ namespace AplicacioEtiquetes.Forms
             // panel1
             // 
             this.panel1.Controls.Add(this.btnImprimirAhora);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.No;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -47,9 +45,11 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnImprimirAhora
             // 
+            this.btnImprimirAhora.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnImprimirAhora.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirAhora.Location = new System.Drawing.Point(0, 0);
             this.btnImprimirAhora.Name = "btnImprimirAhora";
-            this.btnImprimirAhora.Size = new System.Drawing.Size(797, 57);
+            this.btnImprimirAhora.Size = new System.Drawing.Size(800, 60);
             this.btnImprimirAhora.TabIndex = 0;
             this.btnImprimirAhora.Text = "🖨 Confirmar e Imprimir";
             this.btnImprimirAhora.UseVisualStyleBackColor = true;
@@ -71,6 +71,7 @@ namespace AplicacioEtiquetes.Forms
             this.Controls.Add(this.vistaPrevia);
             this.Controls.Add(this.panel1);
             this.Name = "FormImpresion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormImpresion";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

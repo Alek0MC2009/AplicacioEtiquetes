@@ -1,5 +1,4 @@
-﻿
-namespace AplicacioEtiquetes.Forms
+﻿namespace AplicacioEtiquetes.Forms
 {
     partial class FormImprimirCustom
     {
@@ -44,6 +43,8 @@ namespace AplicacioEtiquetes.Forms
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.btnUnselectAll);
             this.panel1.Controls.Add(this.btnSelectAll);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -53,6 +54,7 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnUnselectAll
             // 
+            this.btnUnselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUnselectAll.Location = new System.Drawing.Point(391, 3);
             this.btnUnselectAll.Name = "btnUnselectAll";
             this.btnUnselectAll.Size = new System.Drawing.Size(382, 50);
@@ -63,6 +65,7 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnSelectAll
             // 
+            this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSelectAll.Location = new System.Drawing.Point(3, 3);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(382, 50);
@@ -74,7 +77,7 @@ namespace AplicacioEtiquetes.Forms
             // lblSelected
             // 
             this.lblSelected.AutoSize = true;
-            this.lblSelected.Location = new System.Drawing.Point(378, 71);
+            this.lblSelected.Location = new System.Drawing.Point(15, 74);
             this.lblSelected.Name = "lblSelected";
             this.lblSelected.Size = new System.Drawing.Size(93, 17);
             this.lblSelected.TabIndex = 1;
@@ -82,6 +85,8 @@ namespace AplicacioEtiquetes.Forms
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.btnPrint);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Location = new System.Drawing.Point(15, 385);
@@ -91,6 +96,7 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnPrint
             // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrint.Location = new System.Drawing.Point(404, 3);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(363, 47);
@@ -101,6 +107,7 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.Location = new System.Drawing.Point(3, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(395, 47);
@@ -111,12 +118,15 @@ namespace AplicacioEtiquetes.Forms
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 87);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 292);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 282);
             this.dataGridView1.TabIndex = 4;
             // 
             // FormImprimirCustom
@@ -129,6 +139,7 @@ namespace AplicacioEtiquetes.Forms
             this.Controls.Add(this.lblSelected);
             this.Controls.Add(this.panel1);
             this.Name = "FormImprimirCustom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormImprimirCustom";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

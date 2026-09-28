@@ -1,5 +1,4 @@
-﻿
-namespace AplicacioEtiquetes.Forms
+﻿namespace AplicacioEtiquetes.Forms
 {
     partial class FormCrearEtiqueta
     {
@@ -38,25 +37,31 @@ namespace AplicacioEtiquetes.Forms
             // 
             // lblPrecio
             // 
+            this.lblPrecio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(287, 172);
+            this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecio.Location = new System.Drawing.Point(240, 202);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(42, 17);
+            this.lblPrecio.Size = new System.Drawing.Size(61, 25);
             this.lblPrecio.TabIndex = 0;
             this.lblPrecio.Text = "Preu:";
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(347, 167);
+            this.txtPrecio.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecio.Location = new System.Drawing.Point(315, 199);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(150, 22);
+            this.txtPrecio.Size = new System.Drawing.Size(220, 30);
             this.txtPrecio.TabIndex = 1;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(55, 399);
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(40, 370);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(311, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(340, 45);
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Crear Etiqueta";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -64,9 +69,11 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(421, 398);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(420, 370);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(314, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(340, 45);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Tornar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -74,11 +81,12 @@ namespace AplicacioEtiquetes.Forms
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(163, 36);
+            this.label1.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(204, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(512, 65);
+            this.label1.Size = new System.Drawing.Size(392, 48);
             this.label1.TabIndex = 4;
             this.label1.Text = "Crea una etiqueta";
             // 
@@ -93,6 +101,7 @@ namespace AplicacioEtiquetes.Forms
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Name = "FormCrearEtiqueta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCrearEtiqueta";
             this.Load += new System.EventHandler(this.FormCrearEtiqueta_Load);
             this.ResumeLayout(false);

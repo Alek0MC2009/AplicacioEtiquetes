@@ -1,5 +1,4 @@
-﻿
-namespace AplicacioEtiquetes.Forms
+﻿namespace AplicacioEtiquetes.Forms
 {
     partial class FormListaPrecios
     {
@@ -39,6 +38,9 @@ namespace AplicacioEtiquetes.Forms
             // 
             // dgvPrecios
             // 
+            this.dgvPrecios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrecios.Location = new System.Drawing.Point(12, 12);
             this.dgvPrecios.Name = "dgvPrecios";
@@ -49,19 +51,21 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnNuevo
             // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNuevo.Location = new System.Drawing.Point(13, 388);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(252, 50);
+            this.btnNuevo.Size = new System.Drawing.Size(200, 50);
             this.btnNuevo.TabIndex = 1;
-            this.btnNuevo.Text = "➕ Afegir Produce";
+            this.btnNuevo.Text = "➕ Afegir Preu";
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(286, 387);
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEliminar.Location = new System.Drawing.Point(225, 388);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(239, 51);
+            this.btnEliminar.Size = new System.Drawing.Size(200, 50);
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "🗑 Eliminar Seleccionat";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -69,7 +73,8 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(542, 388);
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImprimir.Location = new System.Drawing.Point(535, 388);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(120, 50);
             this.btnImprimir.TabIndex = 3;
@@ -79,6 +84,7 @@ namespace AplicacioEtiquetes.Forms
             // 
             // btnImprimirSeleccio
             // 
+            this.btnImprimirSeleccio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImprimirSeleccio.Location = new System.Drawing.Point(668, 388);
             this.btnImprimirSeleccio.Name = "btnImprimirSeleccio";
             this.btnImprimirSeleccio.Size = new System.Drawing.Size(120, 50);
@@ -98,6 +104,7 @@ namespace AplicacioEtiquetes.Forms
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.dgvPrecios);
             this.Name = "FormListaPrecios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormListaPrecios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecios)).EndInit();
             this.ResumeLayout(false);
