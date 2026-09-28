@@ -15,6 +15,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -119,11 +134,23 @@
     <Compile Include="Forms\FormImpresion.Designer.cs">
       <DependentUpon>FormImpresion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormImprimirCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormImprimirCustom.Designer.cs">
+      <DependentUpon>FormImprimirCustom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormListaPrecios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormListaPrecios.Designer.cs">
       <DependentUpon>FormListaPrecios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVistaPreviaCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVistaPreviaCustom.Designer.cs">
+      <DependentUpon>FormVistaPreviaCustom.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Consts.cs" />
     <Compile Include="Models\PrecioItem.cs" />
@@ -136,8 +163,14 @@
     <EmbeddedResource Include="Forms\FormImpresion.resx">
       <DependentUpon>FormImpresion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormImprimirCustom.resx">
+      <DependentUpon>FormImprimirCustom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListaPrecios.resx">
       <DependentUpon>FormListaPrecios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVistaPreviaCustom.resx">
+      <DependentUpon>FormVistaPreviaCustom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -167,7 +200,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

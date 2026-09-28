@@ -94,5 +94,13 @@ namespace AplicacioEtiquetes.Forms
                 formImp.ShowDialog();
             }
         }
+
+        private void btnImprimirSeleccio_Click(object sender, EventArgs e)
+        {
+            using (FormImprimirCustom formImp = new FormImprimirCustom())
+            {
+                formImp.ShowDialog();
+            }
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace Data
             List<PrecioItem> lista = new List<PrecioItem>();
             using (SQLiteConnection conexion = new SQLiteConnection(cadenaConexion))
             {
+                // Abrimos la conexion a la BBDD
+                // Odio este trabajo
                 conexion.Open();
                 string sql = "SELECT Id, Valor, FechaCreacion FROM Precios ORDER BY Id DESC";
 

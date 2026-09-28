@@ -33,6 +33,7 @@ namespace AplicacioEtiquetes.Forms
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnImprimirSeleccio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,17 +71,28 @@ namespace AplicacioEtiquetes.Forms
             // 
             this.btnImprimir.Location = new System.Drawing.Point(542, 388);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(246, 50);
+            this.btnImprimir.Size = new System.Drawing.Size(120, 50);
             this.btnImprimir.TabIndex = 3;
             this.btnImprimir.Text = "🖨 Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnImprimirSeleccio
+            // 
+            this.btnImprimirSeleccio.Location = new System.Drawing.Point(668, 388);
+            this.btnImprimirSeleccio.Name = "btnImprimirSeleccio";
+            this.btnImprimirSeleccio.Size = new System.Drawing.Size(120, 50);
+            this.btnImprimirSeleccio.TabIndex = 4;
+            this.btnImprimirSeleccio.Text = "🖨 Imprimir Selecció";
+            this.btnImprimirSeleccio.UseVisualStyleBackColor = true;
+            this.btnImprimirSeleccio.Click += new System.EventHandler(this.btnImprimirSeleccio_Click);
             // 
             // FormListaPrecios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnImprimirSeleccio);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnNuevo);
@@ -98,5 +110,6 @@ namespace AplicacioEtiquetes.Forms
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnImprimirSeleccio;
     }
 }
