@@ -9,6 +9,7 @@ using System.Drawing;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
+using Helpers;
 
 namespace AplicacioEtiquetes.Forms
 {
@@ -17,10 +18,13 @@ namespace AplicacioEtiquetes.Forms
         private PrecioRepository repository = new PrecioRepository();
         private Font fuenteMunson;
         private ImpresorGuillotinaConMarcas impresor;
+        private LectorConfig _lectorConfig = new LectorConfig();
         public FormImpresion()
         {
             InitializeComponent();
-            fuenteMunson = new Font("Munson", 64f, FontStyle.Bold);
+            _lectorConfig.CargarConfiguracion();
+            string fontSize = _lectorConfig.ObtenerValor("fontSize", "36");
+            fuenteMunson = new Font("Munson", int.Parse(fontSize), FontStyle.Bold);
 
             CargarVistaPrevia(); // Cargamos el documento a imprimir
         }

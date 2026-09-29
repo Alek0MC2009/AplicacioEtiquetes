@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Printing;
+using Helpers;
 
 namespace AplicacioEtiquetes.Forms
 {
@@ -10,13 +11,16 @@ namespace AplicacioEtiquetes.Forms
     {
         private Font fuenteMunson;
         private ImpresorGuillotinaConMarcas impresor;
+        private LectorConfig lectorConfig = new LectorConfig();
+        
 
         // Constructor que recibe únicamente la lista de strings seleccionados
         public FormVistaPreviaCustom(List<string> preciosSeleccionados)
         {
             InitializeComponent();
-
-            fuenteMunson = new Font("Munson", 64f, FontStyle.Bold);
+            lectorConfig.CargarConfiguracion();
+            string fontSize = lectorConfig.ObtenerValor("fontSize", "36");
+            fuenteMunson = new Font("Munson", int.Parse(fontSize), FontStyle.Bold);
 
             CargarVistaPrevia(preciosSeleccionados);
         }

@@ -12,7 +12,7 @@ namespace Printing
     {
         private List<string> listaPrecios;
         private Font fuenteMunson;
-        private const int AnchoEtiqueta = 326; // 6cm mas o menos
+        private const int AnchoEtiqueta = 236; // 6cm mas o menos
         private const int AltoEtiqueta = 118;
         private const int MargenX = 80;
         private const int MargenY = 80;

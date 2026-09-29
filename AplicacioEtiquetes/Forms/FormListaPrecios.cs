@@ -102,5 +102,13 @@ namespace AplicacioEtiquetes.Forms
                 formImp.ShowDialog();
             }
         }
+
+        private void menuAcercaDe_Click(object sender, EventArgs e)
+        {
+            using (FormAcercaDe acercaDe = new FormAcercaDe())
+            {
+                acercaDe.ShowDialog();  
+            }
+        }
     }
 }

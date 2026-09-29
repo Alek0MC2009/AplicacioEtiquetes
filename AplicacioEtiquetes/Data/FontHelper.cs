@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace Data
 {
+    
+    [Obsolete("Ya no usamos esta clase debido a que daba memory leaks y instalamos el ttf directamente ene l sistema")]
     public static class FontHelper
     {
         private static PrivateFontCollection pfc = new PrivateFontCollection();
