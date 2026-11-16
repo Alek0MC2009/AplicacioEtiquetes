@@ -10,7 +10,8 @@ namespace Helpers
 {
     public static class Consts
     {
-        public const int FontSize = 36;
+        public const int FontSizeNormal = 36;
+        public const int FontSizeMitad = 70;
         // Here you can change the name on AppData, default is Decomontsià.
         public static readonly string DB_CONNECTION = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Decomontsia", "precios.db")};Version=3;";
         public static readonly string CONFIG_FILE = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Decomontsia", "config.dcm")}";

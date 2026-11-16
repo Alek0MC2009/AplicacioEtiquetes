@@ -12,29 +12,39 @@ namespace AplicacioEtiquetes.Forms
         private Font fuenteMunson;
         private ImpresorGuillotinaConMarcas impresor;
         private LectorConfig lectorConfig = new LectorConfig();
-        
+        private bool mitadAncho = false;
+
+        // Necesitamos guardar los precios en una variable de clase para poder recargar la vista previa
+        private List<string> _preciosActuales;
 
         // Constructor que recibe únicamente la lista de strings seleccionados
         public FormVistaPreviaCustom(List<string> preciosSeleccionados)
         {
             InitializeComponent();
+            _preciosActuales = preciosSeleccionados;
+
             lectorConfig.CargarConfiguracion();
             string fontSize = lectorConfig.ObtenerValor("fontSize", "36");
-            fuenteMunson = new Font("Munson", int.Parse(fontSize), FontStyle.Bold);
 
-            CargarVistaPrevia(preciosSeleccionados);
+            // Inicializamos el contador visual
+            contadorFontSize.Value = int.Parse(fontSize);
+
+            // Creamos la fuente inicial usando píxeles para que sea predecible
+            fuenteMunson = new Font("Munson", int.Parse(fontSize), FontStyle.Bold, GraphicsUnit.Pixel);
+
+            CargarVistaPrevia();
         }
 
-        private void CargarVistaPrevia(List<string> precios)
+        private void CargarVistaPrevia()
         {
-            if (precios == null || precios.Count == 0)
+            if (_preciosActuales == null || _preciosActuales.Count == 0)
             {
                 MessageBox.Show("No hay precios para mostrar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // Usamos la misma clase de impresión pasando solo la lista filtrada
-            impresor = new ImpresorGuillotinaConMarcas(precios, fuenteMunson);
+            // IMPORTANTE: Pasamos la variable mitadAncho en lugar de false
+            impresor = new ImpresorGuillotinaConMarcas(_preciosActuales, fuenteMunson, mitadAncho);
 
             // Asignamos el PrintDocument generado al PrintPreviewControl de esta ventana
             vistaPrevia.Document = impresor.CrearPrintDocument();
@@ -52,6 +62,32 @@ namespace AplicacioEtiquetes.Forms
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void contadorFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            int nuevoTamaño = (int)contadorFontSize.Value;
+
+            // Si está a la mitad, ajustamos el tamaño para que no se salga de la caja pequeña
+            int tamañoReal = mitadAncho ? (nuevoTamaño / 2) : nuevoTamaño;
+            if (tamañoReal < 1) tamañoReal = 1;
+
+            fuenteMunson = new Font("Munson", tamañoReal, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            // Refrescamos la vista previa
+            CargarVistaPrevia();
+        }
+
+        private void checkboxMitad_CheckedChanged(object sender, EventArgs e)
+        {
+            mitadAncho = checkboxMitad.Checked;
+
+            if (mitadAncho)
+                contadorFontSize.Value = Consts.FontSizeMitad; // Ajusta este valor si ves que no encaja
+            else
+                contadorFontSize.Value = Consts.FontSizeNormal;
+
+            CargarVistaPrevia();
         }
     }
 }

@@ -19,13 +19,17 @@ namespace AplicacioEtiquetes.Forms
         private Font fuenteMunson;
         private ImpresorGuillotinaConMarcas impresor;
         private LectorConfig _lectorConfig = new LectorConfig();
+        private bool mitadAncho = false;
         public FormImpresion()
         {
             InitializeComponent();
             _lectorConfig.CargarConfiguracion();
             string fontSize = _lectorConfig.ObtenerValor("fontSize", "36");
+            contadorFontSize.Minimum = 6;
+            contadorFontSize.Maximum = 100;
+            contadorFontSize.Value = int.Parse(fontSize);
             fuenteMunson = new Font("Munson", int.Parse(fontSize), FontStyle.Bold);
-
+            checkboxMitad.Checked = mitadAncho;
             CargarVistaPrevia(); // Cargamos el documento a imprimir
         }
 
@@ -39,7 +43,7 @@ namespace AplicacioEtiquetes.Forms
                 return;
             }
 
-            impresor = new ImpresorGuillotinaConMarcas(precios, fuenteMunson);
+            impresor = new ImpresorGuillotinaConMarcas(precios, fuenteMunson, mitadAncho);
             vistaPrevia.Document = impresor.CrearPrintDocument();
         }
 
@@ -49,6 +53,37 @@ namespace AplicacioEtiquetes.Forms
             {
                 impresor.LanzarImpresionDirecta();
             }
+        }
+
+        private void contadorFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            // La fuente va directa, sin dividir. Si el usuario quiere que quepa, baja el número.
+            int newSize = (int)contadorFontSize.Value;
+
+            // Usamos GraphicsUnit.Pixel para que sea predecible (como hablamos antes)
+            fuenteMunson = new Font("Munson", newSize, FontStyle.Bold, GraphicsUnit.Pixel);
+            CargarVistaPrevia();
+        }
+
+        private void checkboxMitad_CheckedChanged(object sender, EventArgs e)
+        {
+            mitadAncho = checkboxMitad.Checked;
+
+            // Ilogicamente este lenguaje hace cosas raras con la fuente xdd
+            if (mitadAncho)
+            {
+                contadorFontSize.Value = Consts.FontSizeMitad;
+                // Ya he encontrado la lgoica a q mas grande haga q se vea mas pequeño
+                // Es todo culpa de gaster
+                // Creo qie trabajar aqui esta haciendo q me vuelva loco
+                // Seguro que las focas no me harian esto
+            }
+            else
+            {
+                contadorFontSize.Value = Consts.FontSizeNormal;
+            }
+
+            CargarVistaPrevia();
         }
     }
 }

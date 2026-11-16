@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -12,23 +11,44 @@ namespace Printing
     {
         private List<string> listaPrecios;
         private Font fuenteMunson;
-        private const int AnchoEtiqueta = 236; // 6cm mas o menos
-        private const int AltoEtiqueta = 118;
-        private const int MargenX = 80;
-        private const int MargenY = 80;
-        private const int Columnas = 3;
+        private int AnchoEtiqueta = 236; // ~6 cm
+        
+        private int AltoEtiqueta = 118;
+        private int MargenX = 80;
+        private int MargenY = 80;
+        private int Columnas = 3;
         private const int LargoMarcaCorte = 20;
 
-        public ImpresorGuillotinaConMarcas(List<string> precios, Font fuente)
+        // Lista expandida (cada precio repetido 3 veces) y control de progreso
+        private List<string> etiquetas;
+        private int indiceActual;
+        private int filasPorPagina;
+
+        public ImpresorGuillotinaConMarcas(List<string> precios, Font fuente, bool mitadAncho)
         {
             this.listaPrecios = precios;
             this.fuenteMunson = fuente;
+            if(!mitadAncho)
+            {
+                this.AnchoEtiqueta = 236;
+                this.Columnas = 3;
+                this.MargenX = 80;
+                this.MargenY = 80;
+                //this.AltoEtiqueta = 118;
+            } else
+            {
+                this.AnchoEtiqueta /= 2;
+                this.MargenX = 40;
+                this.MargenY = 40;
+                this.Columnas = 6;
+            }
         }
 
         public PrintDocument CrearPrintDocument()
         {
             PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(DibujarPagina);
+            pd.BeginPrint += (s, e) => PrepararTrabajo();
+            pd.PrintPage += DibujarPagina;
             return pd;
         }
 
@@ -46,9 +66,52 @@ namespace Printing
                 }
             }
         }
+
+        /// <summary>
+        /// Se ejecuta una vez al iniciar cada trabajo de impresión.
+        /// Expande la lista y reinicia el índice de progreso.
+        /// </summary>
+        private void PrepararTrabajo()
+        {
+            etiquetas = new List<string>(listaPrecios.Count * 3);
+            foreach (string precio in listaPrecios)
+            {
+                // Cada precio se repite 3 veces para ocupar toda la fila
+                etiquetas.Add(precio);
+                etiquetas.Add(precio);
+                etiquetas.Add(precio);
+            }
+            indiceActual = 0;
+        }
+
         private void DibujarPagina(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            // Área imprimible real de la impresora
+            Rectangle area = e.MarginBounds;
+
+            // Cuántas filas caben en esta página (dejando sitio a las marcas inferiores)
+            int altoDisponible = area.Height - MargenY - LargoMarcaCorte;
+            filasPorPagina = Math.Max(1, altoDisponible / AltoEtiqueta);
+
+            // Cuántas etiquetas quedan por imprimir
+            int restantes = etiquetas.Count - indiceActual;
+            if (restantes <= 0)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            // Filas que realmente vamos a usar en esta página
+            int filasEstaPagina = Math.Min(
+                filasPorPagina,
+                (int)Math.Ceiling(restantes / (double)Columnas)
+            );
+
+            int anchoBloque = Columnas * AnchoEtiqueta;
+            int altoBloque = filasEstaPagina * AltoEtiqueta;
 
             using (Pen lapizEtiqueta = new Pen(Color.Black, 2))
             using (Pen lapizCorte = new Pen(Color.Gray, 1) { DashStyle = DashStyle.Dash })
@@ -57,62 +120,69 @@ namespace Printing
                 StringFormat format = new StringFormat
                 {
                     Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
+                    LineAlignment = StringAlignment.Center,
+                    Trimming = StringTrimming.EllipsisCharacter,
+                    FormatFlags = StringFormatFlags.NoWrap
                 };
 
-                // Si hay N precios en BD, imprimimos 3 de cada uno (rellenando la fila)
-                int totalEtiquetas = listaPrecios.Count * 3;
-                int filas = (int)Math.Ceiling((double)totalEtiquetas / Columnas);
-
-                int anchoTotalBloque = Columnas * AnchoEtiqueta;
-                int altoTotalBloque = filas * AltoEtiqueta;
-
-                // 1. DIBUJAR MARCAS EXTERNAS DE GUILLOTINA (Fuera del bloque de etiquetas)
-                // Guías verticales
+                // 1. MARCAS EXTERNAS DE GUILLOTINA
+                // Guías verticales (arriba y abajo del bloque)
                 for (int c = 0; c <= Columnas; c++)
                 {
                     int posX = MargenX + (c * AnchoEtiqueta);
-                    g.DrawLine(lapizCorte, posX, MargenY - LargoMarcaCorte, posX, MargenY);
-                    g.DrawLine(lapizCorte, posX, MargenY + altoTotalBloque, posX, MargenY + altoTotalBloque + LargoMarcaCorte);
+
+                    g.DrawLine(lapizCorte,
+                        posX, MargenY - LargoMarcaCorte,
+                        posX, MargenY);
+
+                    g.DrawLine(lapizCorte,
+                        posX, MargenY + altoBloque,
+                        posX, MargenY + altoBloque + LargoMarcaCorte);
                 }
 
-                // Guías horizontales
-                for (int f = 0; f <= filas; f++)
+                // Guías horizontales (izquierda y derecha del bloque)
+                for (int f = 0; f <= filasEstaPagina; f++)
                 {
                     int posY = MargenY + (f * AltoEtiqueta);
-                    g.DrawLine(lapizCorte, MargenX - LargoMarcaCorte, posY, MargenX, posY);
-                    g.DrawLine(lapizCorte, MargenX + anchoTotalBloque, posY, MargenX + anchoTotalBloque + LargoMarcaCorte, posY);
+
+                    g.DrawLine(lapizCorte,
+                        MargenX - LargoMarcaCorte, posY,
+                        MargenX, posY);
+
+                    g.DrawLine(lapizCorte,
+                        MargenX + anchoBloque, posY,
+                        MargenX + anchoBloque + LargoMarcaCorte, posY);
                 }
 
-                // 2. DIBUJAR LAS ETIQUETAS Y SUS TEXTOS
+                // 2. ETIQUETAS Y TEXTOS
                 int col = 0;
                 int fila = 0;
 
-                foreach (string precio in listaPrecios)
+                while (indiceActual < etiquetas.Count && fila < filasEstaPagina)
                 {
-                    // Cada precio se repite 3 veces consecutivas para ocupar toda la fila de la rejilla
-                    for (int rep = 0; rep < 3; rep++)
+                    int x = MargenX + (col * AnchoEtiqueta);
+                    int y = MargenY + (fila * AltoEtiqueta);
+
+                    Rectangle rectEtiqueta = new Rectangle(x, y, AnchoEtiqueta, AltoEtiqueta);
+
+                    // Borde continuo de la etiqueta
+                    g.DrawRectangle(lapizEtiqueta, rectEtiqueta);
+
+                    // Texto del precio centrado con Munson Bold
+                    g.DrawString(etiquetas[indiceActual], fuenteMunson, pincelTexto, rectEtiqueta, format);
+
+                    indiceActual++;
+                    col++;
+                    if (col >= Columnas)
                     {
-                        int x = MargenX + (col * AnchoEtiqueta);
-                        int y = MargenY + (fila * AltoEtiqueta);
-
-                        Rectangle rectEtiqueta = new Rectangle(x, y, AnchoEtiqueta, AltoEtiqueta);
-
-                        // Borde continuo de la etiqueta
-                        g.DrawRectangle(lapizEtiqueta, rectEtiqueta);
-
-                        // Texto del precio centrado con Munson Bold
-                        g.DrawString(precio, fuenteMunson, pincelTexto, rectEtiqueta, format);
-
-                        col++;
-                        if (col >= Columnas)
-                        {
-                            col = 0;
-                            fila++;
-                        }
+                        col = 0;
+                        fila++;
                     }
                 }
             }
+
+            // ¿Quedan etiquetas para otra página?
+            e.HasMorePages = indiceActual < etiquetas.Count;
         }
     }
 }
